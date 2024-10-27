@@ -29,7 +29,7 @@ import (
 func main() {
     charset, _ := syntax.Parse(`[0-9a-z]`, syntax.Perl)
 
-    // options can also be nil when passed to array if you are happy with the default options
+    // options can also be nil when passed to function if you are happy with the default options
     options := genex.GenOpts {
         charset: charset, // set to nil if you are ok with the default charset
         infinite: 5, 
