@@ -7,7 +7,8 @@ import (
 )
 
 func TestGenerateCharacters(t *testing.T) {
-	charset, _ := syntax.Parse(`[0-9a-zA-Z-._]`, syntax.Perl)
+	//charset, _ := syntax.Parse(`[0-9a-zA-Z-._]`, syntax.Perl)
+	charset, _ := syntax.Parse(`[a-c]`, syntax.Perl)
 	expected := []struct {
 		in  string
 		out []string
@@ -15,13 +16,14 @@ func TestGenerateCharacters(t *testing.T) {
 		{``, []string{``}},
 		{`a`, []string{`a`}},
 		{`abc`, []string{`abc`}},
+		{`.{1}`, []string{`a`,`b`,`c`}},
 	}
 
 	for _, pair := range expected {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
 		values := []string{}
 
-		Generate(in, charset, 3, func(output string) {
+		GenerateWithoutOptions(in, charset, 3, func(output string) {
 			values = append(values, output)
 		})
 
@@ -54,7 +56,7 @@ func TestGenerateCharacterSets(t *testing.T) {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
 		values := []string{}
 
-		Generate(in, charset, 3, func(output string) {
+		GenerateWithoutOptions(in, charset, 3, func(output string) {
 			values = append(values, output)
 		})
 
@@ -86,7 +88,7 @@ func TestGenerateRepetition(t *testing.T) {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
 		values := []string{}
 
-		Generate(in, charset, 3, func(output string) {
+		GenerateWithoutOptions(in, charset, 3, func(output string) {
 			values = append(values, output)
 		})
 
@@ -117,7 +119,7 @@ func TestGenerateAlternationAndGrouping(t *testing.T) {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
 		values := []string{}
 
-		Generate(in, charset, 3, func(output string) {
+		GenerateWithoutOptions(in, charset, 3, func(output string) {
 			values = append(values, output)
 		})
 
@@ -142,7 +144,7 @@ func TestGenerateInvalidCharset(t *testing.T) {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
 		values := []string{}
 
-		Generate(in, charset, 3, func(output string) {
+		GenerateWithoutOptions(in, charset, 3, func(output string) {
 			values = append(values, output)
 		})
 

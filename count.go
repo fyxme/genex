@@ -5,9 +5,24 @@ import (
 	"regexp/syntax"
 )
 
+
+func CountWithoutOptions(input, charset *syntax.Regexp, infinite int) float64 {
+
+	options := GenOpts {
+		charset: charset,
+		infinite: infinite,
+	}
+
+	return Count(input, &options)
+} 
+
 // Count computes the total number of matches the `input` regex would generate after whitelisting `charset`.
 // The `infinite` argument caps the maximum boundary of repetition operators.
-func Count(input, charset *syntax.Regexp, infinite int) float64 {
+//func Count(input, charset *syntax.Regexp, infinite int) float64 {
+func Count(input *syntax.Regexp, options *GenOpts) float64 {
+
+	charset, infinite := valuesFromOptions(options)
+
 	var count func(input, charset *syntax.Regexp, infinite int) float64
 
 	count = func(input, charset *syntax.Regexp, infinite int) float64 {

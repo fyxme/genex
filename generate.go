@@ -5,9 +5,23 @@ import (
 	"regexp/syntax"
 )
 
+func GenerateWithoutOptions(input, charset *syntax.Regexp, infinite int, callback func(string)) {
+
+	options := GenOpts {
+		charset: charset, 
+		infinite: infinite,
+	}
+
+	Generate(input, &options, callback)
+}
+
 // Generate yields all the strings that match the `input` regex after whitelisting `charset`.
 // The `infinite` argument caps the maximum boundary of repetition operators.
-func Generate(input, charset *syntax.Regexp, infinite int, callback func(string)) {
+//func Generate(input, charset *syntax.Regexp, infinite int, callback func(string)) {
+func Generate(input *syntax.Regexp, options *GenOpts, callback func(string)) {
+
+	charset, infinite := valuesFromOptions(options)
+
 	var generate func(input, charset *syntax.Regexp, infinite int) _Iterator
 
 	generate = func(input, charset *syntax.Regexp, infinite int) _Iterator {

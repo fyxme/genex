@@ -15,7 +15,8 @@ import (
     "fmt"
     "regexp/syntax"
 
-    "github.com/alixaxel/genex"
+    //"github.com/alixaxel/genex"
+    "github.com/fyxme/genex"
 )
 
 func main() {

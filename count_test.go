@@ -19,7 +19,7 @@ func TestCountCharacters(t *testing.T) {
 
 	for _, pair := range expected {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
-		value := Count(in, charset, 3)
+		value := CountWithoutOptions(in, charset, 3)
 
 		if value != pair.out {
 			t.Error("For", pair.in, "expected", pair.out, "but got", value)
@@ -64,7 +64,7 @@ func TestCountCharacterSets(t *testing.T) {
 
 	for _, pair := range expected {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
-		value := Count(in, charset, 3)
+		value := CountWithoutOptions(in, charset, 3)
 
 		if value != pair.out {
 			t.Error("For", pair.in, "expected", pair.out, "but got", value)
@@ -98,7 +98,7 @@ func TestCountRepetition(t *testing.T) {
 
 	for _, pair := range expected {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
-		value := Count(in, charset, 3)
+		value := CountWithoutOptions(in, charset, 3)
 
 		if value != pair.out {
 			t.Error("For", pair.in, "expected", pair.out, "but got", value)
@@ -133,7 +133,7 @@ func TestCountRepetitionWithHigherInfinity(t *testing.T) {
 
 	for _, pair := range expected {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
-		value := Count(in, charset, 512)
+		value := CountWithoutOptions(in, charset, 512)
 
 		if value != pair.out {
 			t.Error("For", pair.in, "expected", pair.out, "but got", value)
@@ -154,7 +154,7 @@ func TestCountRepetitionWithUnlimitedInfinity(t *testing.T) {
 
 	for _, pair := range expected {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
-		value := Count(in, charset, int(math.Inf(1)))
+		value := CountWithoutOptions(in, charset, int(math.Inf(1)))
 
 		if value != pair.out {
 			t.Error("For", pair.in, "expected", pair.out, "but got", value)
@@ -182,7 +182,7 @@ func TestCountAlternationAndGrouping(t *testing.T) {
 
 	for _, pair := range expected {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
-		value := Count(in, charset, 3)
+		value := CountWithoutOptions(in, charset, 3)
 
 		if value != pair.out {
 			t.Error("For", pair.in, "expected", pair.out, "but got", value)
@@ -201,7 +201,7 @@ func TestCountInvalidCharset(t *testing.T) {
 
 	for _, pair := range expected {
 		in, _ := syntax.Parse(pair.in, syntax.Perl)
-		value := Count(in, charset, 3)
+		value := CountWithoutOptions(in, charset, 3)
 
 		if value != pair.out {
 			t.Error("For", pair.in, "expected", pair.out, "but got", value)
