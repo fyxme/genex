@@ -22,8 +22,13 @@ import (
 )
 
 /* Default values
-	DEFAULT_CHARSET = "[a-zA-Z0-9]" // charset that will be used when arbytrary values are specified (ie. a dot (.))
-	DEFAULT_INFINITE = 3 // number of interations for a multiplier (ie. a + or * multiplier)
+
+	// charset that will be used when arbytrary values are specified (ie. a dot (.))
+    // default: all printable characters
+	DEFAULT_CHARSET = "[[:print:]]" 
+
+	// number of interations for a multiplier (ie. a + or * multiplier)
+	DEFAULT_INFINITE = 3
 */
 
 func main() {

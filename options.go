@@ -10,7 +10,7 @@ type GenOpts struct {
 }
 
 const (
-	DEFAULT_CHARSET = "[a-zA-Z0-9]"
+	DEFAULT_CHARSET = "[[:print:]]"
 	DEFAULT_INFINITE = 3
 )
 
